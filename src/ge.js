@@ -14,12 +14,10 @@ const _fetchItem = (id, config) => new Promise((resolve, reject) => {
       resolve(res.data);
     })
     .catch((err) => {
-      if (!err.response) reject(new Error('An unknown networking error occurred.'));
-      else if (
+      if (!err.response) { reject(new Error('An unknown networking error occurred.')); } else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error('No items were found for the specified id'));
-      else reject(err);
+      ) { reject(new Error('No items were found for the specified id')); } else reject(err);
     });
 });
 
@@ -46,12 +44,10 @@ const _fetchGraph = (id, config) => new Promise((resolve, reject) => {
     .get(`${GE_URLS.graph}/${id}.json`, config)
     .then(res => resolve(res.data))
     .catch((err) => {
-      if (!err.response) reject(new Error('An unknown networking error occurred.'));
-      else if (
+      if (!err.response) { reject(new Error('An unknown networking error occurred.')); } else if (
         (err.response.data && err.response.data.includes('not found'))
           || (err.data && err.data.includes('not found'))
-      ) reject(new Error('No items were found for the specified id'));
-      else reject(err);
+      ) { reject(new Error('No items were found for the specified id')); } else reject(err);
     });
 });
 
