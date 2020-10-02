@@ -11,7 +11,8 @@ const HISCORES_URLS = {
 };
 
 const GE_URLS = {
-  detail: 'http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json',
+  detail:
+    'http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json',
   graph: 'http://services.runescape.com/m=itemdb_oldschool/api/graph',
 };
 
@@ -70,8 +71,8 @@ const STATS = {
     'Kalphite Queen',
     'King Black Dragon',
     'Kraken',
-    'Kree\'Arra',
-    'K\'ril Tsutsaroth',
+    "Kree'Arra",
+    "K'ril Tsutsaroth",
     'Mimic',
     'Nightmare',
     'Obor',
@@ -85,7 +86,7 @@ const STATS = {
     'TzKal-Zuk',
     'TzTok-Jad',
     'Venenatis',
-    'Vet\'ion',
+    "Vet'ion",
     'Vorkath',
     'Wintertodt',
     'Zalcano',
