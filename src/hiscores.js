@@ -12,7 +12,7 @@ const _csvToArray = (csv) => {
 
   csvArray.pop(); // removes the last item since it's always an empty string
 
-  return csvArray.map(line => line.split(','));
+  return csvArray.map((line) => line.split(','));
 };
 
 /**
@@ -22,29 +22,32 @@ const _csvToArray = (csv) => {
  * @param {string} rsn Player's RuneScape Name
  * @param {string} gamemode Player's game mode
  */
-const _fetchPlayerCSV = (rsn, gamemode, config) => new Promise((resolve, reject) => {
-  axios
-    .get(`${HISCORES_URLS[gamemode]}/index_lite.ws?player=${rsn}`, config)
-    .then((res) => {
-      const regex = /[^0-9-,\s]/gm;
-      const found = regex.exec(res.data);
+const _fetchPlayerCSV = (rsn, gamemode, config) =>
+  new Promise((resolve, reject) => {
+    axios
+      .get(`${HISCORES_URLS[gamemode]}/index_lite.ws?player=${rsn}`, config)
+      .then((res) => {
+        const regex = /[^0-9-,\s]/gm;
+        const found = regex.exec(res.data);
 
-      if (found) {
-        reject(new Error('OSRS API appears to be down.'));
-        return;
-      }
+        if (found) {
+          reject(new Error('OSRS API appears to be down.'));
+          return;
+        }
 
-      resolve(res.data);
-    })
-    .catch((err) => {
-      if (!err.response) reject(new Error('An unknown networking error occurred.'));
-      else if (
-        (err.response.data && err.response.data.includes('not found'))
-          || (err.data && err.data.includes('not found'))
-      ) reject(new Error('Player not found! Check RSN or game mode.'));
-      else reject(err);
-    });
-});
+        resolve(res.data);
+      })
+      .catch((err) => {
+        if (!err.response)
+          reject(new Error('An unknown networking error occurred.'));
+        else if (
+          (err.response.data && err.response.data.includes('not found')) ||
+          (err.data && err.data.includes('not found'))
+        )
+          reject(new Error('Player not found! Check RSN or game mode.'));
+        else reject(err);
+      });
+  });
 
 /**
  * Returns a mapped out skills stats object
@@ -150,7 +153,8 @@ const _parseBosses = (statsArray) => {
  * @param {Object[]} stats Array obtained from csvToArray()
  */
 const _parseStats = (stats) => {
-  if (!stats || !Array.isArray(stats) || stats.length <= 0) throw new Error('Invalid stats array received!');
+  if (!stats || !Array.isArray(stats) || stats.length <= 0)
+    throw new Error('Invalid stats array received!');
 
   const player = {};
 
@@ -171,11 +175,14 @@ const _parseStats = (stats) => {
  * @param {'main' | 'iron' |'uim' |'hcim' | 'dmm' | 'sdmm' | 'dmmt'} gamemode Player's game mode
  */
 const getPlayer = async (rsn, gamemode = 'main', config = undefined) => {
-  if (!rsn || typeof rsn !== 'string') throw new Error('RSN must be of type string');
-  else if (rsn.length > 12) throw new Error('RSN must be less or equal to 12 characters');
+  if (!rsn || typeof rsn !== 'string')
+    throw new Error('RSN must be of type string');
+  else if (rsn.length > 12)
+    throw new Error('RSN must be less or equal to 12 characters');
 
   // Invalid gamemode
-  if (!Object.keys(HISCORES_URLS).includes(gamemode)) throw new Error('Invalid game mode');
+  if (!Object.keys(HISCORES_URLS).includes(gamemode))
+    throw new Error('Invalid game mode');
 
   try {
     const csv = await _fetchPlayerCSV(rsn, gamemode, config);
