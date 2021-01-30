@@ -174,7 +174,7 @@ const _parseStats = (stats) => {
   player.bh = _parseBH(stats);
   player.lms = _parseLMS(stats);
   player.clues = _parseClues(stats);
-  player.SoulWarsZeal = _parseSoulWarsZeal(stats);
+  player.soulWarsZeal = _parseSoulWarsZeal(stats);
   player.bosses = _parseBosses(stats);
 
   return player;

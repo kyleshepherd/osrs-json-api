@@ -6,6 +6,7 @@ const { hiscores, ge } = require('../index');
 describe('getPlayer', () => {
   it('should return player object', async () => {
     const boaty = await hiscores.getPlayer('b0aty');
+    console.log(boaty);
     should.exist(boaty);
     boaty.should.be.an('object');
   });
