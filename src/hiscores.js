@@ -126,13 +126,25 @@ const _parseLMS = (stats) => {
 };
 
 /**
+ * Returns a mapped out SoulWarsZeal stats object
+ * 
+ * @access private
+ * @param {Object[]} stats 
+ */
+const _parseSoulWarsZeal = (stats) => {
+  const swz = stats[35];
+
+  return { rank: swz[0], score: swz[1] };
+}
+
+/**
  * Returns Boss kills stats object
  *
  * @access private
  * @param {Object[]} stats Array obtained from csvToArray()
  */
 const _parseBosses = (statsArray) => {
-  const stats = statsArray.slice(35, 79);
+  const stats = statsArray.slice(36, 80);
 
   const bosses = {};
 
@@ -162,6 +174,7 @@ const _parseStats = (stats) => {
   player.bh = _parseBH(stats);
   player.lms = _parseLMS(stats);
   player.clues = _parseClues(stats);
+  player.SoulWarsZeal = _parseSoulWarsZeal(stats);
   player.bosses = _parseBosses(stats);
 
   return player;

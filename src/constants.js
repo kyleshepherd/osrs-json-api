@@ -46,6 +46,7 @@ const STATS = {
   bh: ['hunter', 'rogue'],
   lms: {},
   clues: ['all', 'beginner', 'easy', 'medium', 'hard', 'elite', 'master'],
+  soulWarsZeal: {},
   bosses: [
     'Abyssal Sire',
     'Alchemical Hydra',
